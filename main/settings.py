@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'categories.apps.CategoriesConfig',
     'products.apps.ProductsConfig',
     'users.apps.UsersConfig',
+    'orders.apps.OrdersConfig',
+    'cart.apps.CartConfig',
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -72,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -149,6 +152,9 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Bishkek'
 
 
+CART_SESSION_ID = 'cart'
+
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
@@ -163,7 +169,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=24),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
