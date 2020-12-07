@@ -8,7 +8,7 @@ User = get_user_model()
 
 
 class Order(models.Model):
-    owner = models.ForeignKey(User, related_name='orders', on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(User, related_name='orders', on_delete=models.CASCADE)
     full_name = models.CharField(max_length=200)
     email = models.EmailField()
     address = models.CharField(max_length=250)

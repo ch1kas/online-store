@@ -58,3 +58,14 @@ class LoginSerializer(TokenObtainPairSerializer):
             attrs['access'] = str(refresh.access_token)
 
         return attrs
+    
+class ChangePasswordSerializer(serializers.Serializer):
+
+    model = User
+
+    old_password = serializers.CharField(
+        min_length=6, required=True,
+        write_only=True)
+    new_password = serializers.CharField(
+        min_length=6, required=True,
+        write_only=True)

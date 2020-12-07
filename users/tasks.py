@@ -7,6 +7,9 @@ from users.celery.send_mail import send_confirmation_email
 
 logger = get_task_logger(__name__)
 
+'''
+Sending email after n seconds. Async
+'''
 @task(name='send_notification_task')
 def send_notification_task(user, seconds):
     is_task_completed = False

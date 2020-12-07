@@ -6,7 +6,6 @@ from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 
 from products.models import Product
 
-from orders.permissions import IsOwner
 from .cart import Cart
 from .serializers import CartAddProductSerializer, CardProductDetailSerializer
 
@@ -25,7 +24,7 @@ def cart_add(request, product_id):
                  id=product.id,
                  quantity=cd['quantity'],
                  update_quantity=cd['update'])
-    return Response({'status': 'Successfully Created', 'code': 201})
+    return Response({'status': 'Successfully added', 'code': 201})
 
 
 @permission_classes(IsAuthenticated)
@@ -37,7 +36,6 @@ def cart_remove(request, product_id):
     return Response({'status': 'Successfully removed', 'code': 200})
 
 
-# @permission_classes(IsOwner)
 @csrf_exempt
 @api_view(['GET'])
 def cart_detail(request):
